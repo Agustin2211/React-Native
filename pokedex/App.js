@@ -5,15 +5,15 @@ import { StyleSheet, Text, View, FlatList, Image } from "react-native";
 const pokePath = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
 
 export default function App() {
-  const [firstGenPokemonDetails, setfirstGenPokemonDetails] = useState([]);
+  const [pokemonDetails, setPokemonDetails] = useState([]);
 
   useEffect(() => {
-    const fetchFirstGenPokemons = async () => {
-      const firstGenPokemonIdsResponse = await fetch(pokePath);
-      const firstGenPokemonIdsBody = await firstGenPokemonIdsResponse.json();
+    const fetchPokemons = async () => {
+      const pokemonIdsResponse = await fetch(pokePath);
+      const pokemonIdsBody = await pokemonIdsResponse.json();
   
-      const firstGenPokemonDetails = await Promise.all(
-        firstGenPokemonIdsBody.results.map(async (p) => {
+      const pokemonDetails = await Promise.all(
+        pokemonIdsBody.results.map(async (p) => {
           const pDetails = await fetch(p.url);
           const pDetailsBody = await pDetails.json();
   
@@ -26,10 +26,10 @@ export default function App() {
         })
       );
   
-      setfirstGenPokemonDetails(firstGenPokemonDetails);
+      setPokemonDetails(pokemonDetails);
     };
   
-    fetchFirstGenPokemons();
+    fetchPokemons();
   }, []);
   
 
@@ -46,7 +46,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Pokedex</Text>
-      <FlatList data={firstGenPokemonDetails} renderItem={renderPokemon} />
+      <FlatList data={pokemonDetails} renderItem={renderPokemon} />
       <StatusBar style="auto" />
     </View>
   );
