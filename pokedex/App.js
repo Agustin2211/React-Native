@@ -37,7 +37,6 @@ export default function App() {
     return (
       <View style={styles.pokemonContainer}>
         <Text style={styles.pokemonTitle}>{item.name.charAt(0).toUpperCase() + item.name.slice(1)}</Text>
-        <Text style={styles.pokemonAbilities}>{item.abilities.join(", ")}</Text>
         <Image style={styles.pokemonSprite} source={{ uri: item.sprites.front_default, }}/>
       </View>
       
