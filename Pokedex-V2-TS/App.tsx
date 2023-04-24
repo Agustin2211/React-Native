@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import PokemonList from "./components/PokemonList";
+import PokemonList from "./src/components/PokemonList";
 
 export default function App() {
   return (
